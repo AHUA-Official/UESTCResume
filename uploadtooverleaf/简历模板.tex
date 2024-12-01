@@ -1,0 +1,231 @@
+%%原模板参考了https://www.wondercv.com/的模板 说老实话 超级简历真比overleaf好用  就像低代码平台一样   但是overleaf使用latex语法支持更好的扩展性
+\documentclass[11pt]{article}
+% disable indent globally
+\setlength{\parindent}{0pt}
+% some general improvements, defines the XeTeX logo
+\usepackage{xltxtra}
+\usepackage{bookmark}
+% use hyperlink for email and url
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{url}
+\urlstyle{tt}
+\usepackage{multicol}
+\usepackage{xcolor}
+%%%% 统一一种颜色，偏蓝色，用于section下划线和fontawesome
+\definecolor{CVBlue}{RGB}{078,164,239 }
+%   RGB值   可以关注微信公众号 阿昆的科研日常   那里有很多配色 我列一下我这个二次元喜欢的配色 (R G  B )   其他可以去看配色方案下面的文件
+% 胡桃红    201 071  055  
+% 芙芙蓝    078,164,239 
+% 宵宫红    205 068  050
+% 甘雨蓝    196 216  242
+% 流萤绿    059 165  149 
+% 电兵蓝   我才不找呢   哼哼哼
+
+
+
+
+%照片   标准一寸白底照片   找照相馆拍   拍的好看一点    192*240 
+%  姓名   作为简历开头大标题
+%  给出学校标识   
+% 给出充足的联系方式 
+% 给出博客地址   base   很快入职 + 干半年
+
+\usepackage{calc}
+%%%% 利用tikz来定位照片和学校Logo 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% loading fonts
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\CJKsetecglue{}
+%% 取消中文与数字之间间隙
+%%%%% 字体需要自己下载安装，注意版权问题。
+% 这两种字体应该比较好看，英文Helvetica，中文方正兰亭黑，也是有多种版本，自己试试哪些好看。参考了https://www.wondercv.com/的模板
+%%%%% windows系统好像需要先安装字体，之后下面语句就够了
+%Main document font
+%\setmainfont[
+%  BoldFont = HelveticaNeueLTPro-Md.otf ,
+%]{HelveticaNeueLTPro-Roman.otf}
+%
+%\setCJKmainfont[
+%BoldFont=Pro_GB18030 DemiBold.otf,
+%]{Pro_GB18030.otf}
+%%%%% 字体需要自己下载安装，注意版权问题
+%%%%% linux系统只需要字体路径就行了，如下
+% % Main document font
+
+\setmainfont[
+Path = Font/,
+  Extension = .otf ,
+  BoldFont = HelveticaNeueLTPro-Md.otf ,
+]{HelveticaNeueLTPro-Roman.otf}
+\setCJKmainfont[
+Path = Font/,
+  Extension = .otf ,
+BoldFont=ProGB18030 DemiBold.otf,
+]{ProGB18030.otf}
+
+
+\usepackage{relsize}
+\usepackage{xspace}
+\protected\def\Cpp{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.28ex}{\relsize{-1}++}}\xspace} 
+% use fontawesome
+\usepackage{fontawesome}
+%\newfontfamily{\FA}{[FontAwesome.otf]}
+\usepackage[
+	a4paper,
+	left=1.2cm,
+	right=1.2cm,
+	top=1.5cm,
+	bottom=1cm,
+	nohead
+]{geometry}
+\renewcommand{\baselinestretch}{1.2} 
+%定义行间距1.2
+\usepackage{titlesec}
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+% removes spacing from items but leaves space around the whole list
+%\setlist{nosep} % removes all vertical spacing within and around the list
+\setlist[itemize]{topsep=0.25em, leftmargin=*}
+\setlist[enumerate]{topsep=0.25em, leftmargin=*}
+\titleformat{\section}        
+% Customise the \section command 
+  {\large\bfseries\raggedright} 
+  % Make the \section headers large (\Large), % small capitals (\scshape) and left aligned (\raggedright)
+  {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
+  {}                           % Can be used to insert code before the heading
+  [{\color{CVBlue}\titlerule}]                 % Inserts a horizontal line after the heading
+\titlespacing*{\section}{0cm}{*1.6}{*1.2}
+\usepackage{siunitx}
+\usepackage{amssymb}
+%\xeCJKsetup{CJKspace=true}
+%\xeCJKDeclareCharClass{CJK}{`0 -> `9}    % 设置 0-9 以 CJK 字体输出
+%\normalspacedchars{0,1,2,3,4,5,6,7,8,9} % 0-9 的字符类被还原
+
+
+\begin{document}
+
+\pagenumbering{gobble} 
+%%%% 利用tikz来定位照片，标准一寸照片  192*240     985   
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor = north east] at ($(current page.north east)+(-1cm,-1.2cm)$) {\includegraphics[height=2.8cm]{img/myavator.jpg}};
+\end{tikzpicture}%
+%%%% 利用tikz来定位学校Logo，这里只在第一页显示，345 × 77 mm 
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor = north west] at ($(current page.north west)+(0.2cm,-0.2cm)$) {\includegraphics[height=10cm]{img/uestc.pdf}};
+\end{tikzpicture}%
+%%%% 利用tikz来定位页脚栏，电子版简历使用，黑白纸质打印效果可能并不好。这里只在第一页显示，如果需要每页都有，页脚或者background中加入。
+\begin{tikzpicture}[remember picture, overlay] 
+    \node[anchor = south,fill=CVBlue,draw=none,minimum width=\paperwidth,minimum height=1.5em,align=center,font=\footnotesize,text=white] at ($(current page.south)$) 
+    {\faGithubAlt \ \href{}{https://www.yuque.com/爱玩原神的可莉/}\qquad
+        \faRssSquare \ \href{github地址}{https://github.com/AHUA-Official} };
+        % 围栏填上自己的博客地址 
+\end{tikzpicture}
+
+%tikzpicture环境很敏感，注释周围的空格、空行都会引起水平距离或垂直距离的变化，
+%
+\centerline{\LARGE\bfseries{爱玩原神的可莉}}
+
+% 联系信息+个人博客+求职优势(就是稳定干半年+入职快)
+% 邮箱最好用你的edu邮箱   但是其实用qq也行  主要是要收到邮件查看响应的速度要快
+\centerline{\normalsize{
+		\faPhone \ 152爱玩原神3 \quad
+		\faEnvelopeO \ \href{mailto:mxd@mail.bnu.edu.cn}{我爱玩原神@qq.com}}}
+
+\centerline{\normalsize{wx：152爱玩原神33 \quad base：成都 \quad github : https://github.com/AHUA-Official }}
+% 把你github地址写上去  
+\centerline{\normalsize{可连续实习6个月以上 \quad 两周内到岗}}
+
+
+
+
+
+
+
+% 教育背景
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\  教育背景}
+\textbf{电子科技大学 \quad 软件工程 }           \hfill             2022年9月-2026年6月
+% \newline {CET6}
+
+% 我这个地方写太空了好像  
+
+
+
+
+
+% 项目经历   这个真的要好好写
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faUsers}\ 项目经历}
+\textbf{项目1             \hfill 后端  2022-10--2023-1\\       }
+\begin{itemize}
+    \item   报菜名 
+	\item 描述1 
+    \item 描述2  
+\end{itemize}
+
+\textbf{edukg  基于大模型的在线课程学习平台  \hfill 后端+设计  2024.07--2024.10\\}
+\begin{itemize}
+    \item 报菜名
+	\item描述1 
+    \item 描述2 
+\end{itemize}
+
+
+% 实习经历   这个真的要好好写
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faUsers}\ 实习经历}
+\textbf{王者玩瑶科技有限公司            \hfill 虚拟化产品线 2024.5--2024.11\\       }
+\begin{itemize}
+    \item  实习经历描述  我也不太会   
+	\item 描述1 
+    \item 描述2  
+\end{itemize}
+
+
+
+
+
+% 专业技能   这个真的要好好写  
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faWrench}\ 专业技能}
+
+	% \item 数据库
+	% \item Linux
+ %    \item shell
+	% \item Java
+	% \item Redis
+ %    \item 常用框架
+ %    \item 计算机网络 
+ %    \item 虚拟化： 
+ %    \item 团队协作
+ %    \item 还有啥 
+\begin{itemize}
+    \item \textbf{数据库：} 熟悉MYSQL索引原理和索引优化，事务隔离级别，ACID实现原理，共享锁，排他锁等锁机制，了解SQLite，PostgreSQL和Neo4j。
+    \item \textbf{JavaSE：} 熟悉掌握集合，注解，反射，stream流等，熟读HashMap源码，了解常用设计模式并能应用到项目中。
+    \item \textbf{Web框架：} 熟悉SpringBoot、MyBatisPlus、Maven等JAVA主流开发框架，熟悉Flask框架，熟悉IoC和AOP应用，常用注解，RESTful风格开发。
+    \item \textbf{开发工具：} 熟悉git工作流，熟练使用VSCode，JetBrains，vim，make等工具，熟悉飞书，钉钉，Confluence，Jira，GitLab等协同工具。
+    \item \textbf{Redis：} 熟悉Redis的基本操作，如基本数据结构，缓存常见问题等。
+    \item \textbf{计算机网络：} 熟悉OSI七层网络模型，了解HTTP、TCP、IP等协议，熟练基础网络配置，了解桥接、VLAN、Bond、NAT、DNS、DHCP、ARP、SSH、ping等技术原理。
+    \item \textbf{Linux：} 熟练掌握Linux常用命令，了解Linux启动流程和文件架构。熟悉包管理工具和基础工具安装部署，具备基础的对计算，磁盘，网络进行监控能力，具备一定的日志分析能力。
+    \item \textbf{虚拟化：} 熟悉QEMU和Libvirt的基础使用，熟悉容器化技术如Docker的基本操作，有过私有云平台使用经验，熟悉快照原理，对NFS、SMB、Minio、Ceph、raw、qcow2等存储技术有基本了解。
+
+\end{itemize}
+
+
+
+
+% 其他亮点 
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faTags}\ 其他} 
+% increase linespacing [parsep=0.5ex]
+  \begin{itemize}
+    \item 喜欢写文档博客，个人知识库字数超30万
+\end{itemize}
+
+ 
+
+
+
+%%%% 如果多页简历，可以手动在适当位置插入 \newpage 或者 \clearpage 开始新一页
+
+\end{document}

@@ -1,0 +1,147 @@
+%%原模板参考了https://www.wondercv.com/的模板 说老实话 超级简历真比overleaf好用  就像低代码平台一样   但是overleaf使用latex语法支持更好的扩展性
+\documentclass[11pt]{article}
+% disable indent globally
+\setlength{\parindent}{0pt}
+% some general improvements, defines the XeTeX logo
+\usepackage{xltxtra}
+\usepackage{bookmark}
+% use hyperlink for email and url
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{url}
+\urlstyle{tt}
+\usepackage{multicol}
+\usepackage{xcolor}
+%%%% 统一一种颜色，偏蓝色，用于section下划线和fontawesome
+\definecolor{CVBlue}{RGB}{078,164,239 }
+%   RGB值   可以关注微信公众号 阿昆的科研日常   那里有很多配色 我列一下我这个二次元喜欢的配色 (R G  B )   其他可以去看配色方案下面的文件
+% 胡桃红    201 071  055  
+% 芙芙蓝    078,164,239 
+% 宵宫红    205 068  050
+% 甘雨蓝    196 216  242
+% 流萤绿    059 165  149 
+% 电兵蓝   我才不找呢   哼哼哼
+
+
+
+
+%照片   标准一寸白底照片   找照相馆拍   拍的好看一点    192*240 
+%  姓名   作为简历开头大标题
+%  给出学校标识   
+% 给出充足的联系方式 
+% 给出博客地址   base   很快入职 + 干半年
+
+\usepackage{calc}
+%%%% 利用tikz来定位照片和学校Logo 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% loading fonts
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\CJKsetecglue{}
+%% 取消中文与数字之间间隙
+%%%%% 字体需要自己下载安装，注意版权问题。
+% 这两种字体应该比较好看，英文Helvetica，中文方正兰亭黑，也是有多种版本，自己试试哪些好看。参考了https://www.wondercv.com/的模板
+%%%%% windows系统好像需要先安装字体，之后下面语句就够了
+%Main document font
+%\setmainfont[
+%  BoldFont = HelveticaNeueLTPro-Md.otf ,
+%]{HelveticaNeueLTPro-Roman.otf}
+%
+%\setCJKmainfont[
+%BoldFont=Pro_GB18030 DemiBold.otf,
+%]{Pro_GB18030.otf}
+%%%%% 字体需要自己下载安装，注意版权问题
+%%%%% linux系统只需要字体路径就行了，如下
+% % Main document font
+
+\setmainfont[
+Path = Font/,
+  Extension = .otf ,
+  BoldFont = HelveticaNeueLTPro-Md.otf ,
+]{HelveticaNeueLTPro-Roman.otf}
+\setCJKmainfont[
+Path = Font/,
+  Extension = .otf ,
+BoldFont=ProGB18030 DemiBold.otf,
+]{ProGB18030.otf}
+
+
+\usepackage{relsize}
+\usepackage{xspace}
+\protected\def\Cpp{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.28ex}{\relsize{-1}++}}\xspace} 
+% use fontawesome
+\usepackage{fontawesome}
+%\newfontfamily{\FA}{[FontAwesome.otf]}
+\usepackage[
+	a4paper,
+	left=1.2cm,
+	right=1.2cm,
+	top=1.5cm,
+	bottom=1cm,
+	nohead
+]{geometry}
+\renewcommand{\baselinestretch}{1.2} 
+%定义行间距1.2
+\usepackage{titlesec}
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+% removes spacing from items but leaves space around the whole list
+%\setlist{nosep} % removes all vertical spacing within and around the list
+\setlist[itemize]{topsep=0.25em, leftmargin=*}
+\setlist[enumerate]{topsep=0.25em, leftmargin=*}
+\titleformat{\section}        
+% Customise the \section command 
+  {\large\bfseries\raggedright} 
+  % Make the \section headers large (\Large), % small capitals (\scshape) and left aligned (\raggedright)
+  {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
+  {}                           % Can be used to insert code before the heading
+  [{\color{CVBlue}\titlerule}]                 % Inserts a horizontal line after the heading
+\titlespacing*{\section}{0cm}{*1.6}{*1.2}
+\usepackage{siunitx}
+\usepackage{amssymb}
+%\xeCJKsetup{CJKspace=true}
+%\xeCJKDeclareCharClass{CJK}{`0 -> `9}    % 设置 0-9 以 CJK 字体输出
+%\normalspacedchars{0,1,2,3,4,5,6,7,8,9} % 0-9 的字符类被还原
+
+
+\begin{document}
+
+\pagenumbering{gobble} 
+%%%% 利用tikz来定位照片，标准一寸照片  192*240     985   
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor = north east] at ($(current page.north east)+(-1cm,-1.2cm)$) {\includegraphics[height=2.8cm]{img/myavator.jpg}};
+\end{tikzpicture}%
+%%%% 利用tikz来定位学校Logo，这里只在第一页显示，345 × 77 mm 
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor = north west] at ($(current page.north west)+(0.2cm,-0.2cm)$) {\includegraphics[height=10cm]{img/uestc.pdf}};
+\end{tikzpicture}%
+%%%% 利用tikz来定位页脚栏，电子版简历使用，黑白纸质打印效果可能并不好。这里只在第一页显示，如果需要每页都有，页脚或者background中加入。
+\begin{tikzpicture}[remember picture, overlay] 
+    \node[anchor = south,fill=CVBlue,draw=none,minimum width=\paperwidth,minimum height=1.5em,align=center,font=\footnotesize,text=white] at ($(current page.south)$) 
+    {\faGithubAlt \ \href{}{https://www.yuque.com/ahuaofficial/}\qquad
+        \faRssSquare \ \href{github地址}{https://github.com/AHUA-Official} };
+        % 围栏填上自己的博客地址 
+\end{tikzpicture}
+
+%tikzpicture环境很敏感，注释周围的空格、空行都会引起水平距离或垂直距离的变化，
+%
+\centerline{\LARGE\bfseries{张磊}}
+
+% 联系信息+个人博客+求职优势(就是稳定干半年+入职快)
+% 邮箱最好用你的edu邮箱   但是其实用qq也行  主要是要收到邮件查看响应的速度要快
+\centerline{\normalsize{
+		\faPhone \ 15282149533 \quad
+		\faEnvelopeO \ \href{mailto:mxd@mail.bnu.edu.cn}{3IGAGFJWSGYVAUSGV3@qq.com}}}
+
+\centerline{\normalsize{wx：1528HHFH3 \quad base：成都 \quad github : https://github.com/AHUA-Official }}
+% 把你github地址写上去  
+\centerline{\normalsize{可连续实习6个月以上 \quad 两周内到岗}}
+
+
+
+
+
+\end{document}
