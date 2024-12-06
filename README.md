@@ -1,5 +1,5 @@
 # UESTCResume
-电子科技大学大三找实习简历latex模板喵喵喵byzl推荐在overleaf上使用谢谢
+电子科技大学大三找实习简历latex模板byzl推荐在overleaf上使用谢谢
 
 
 
@@ -59,9 +59,9 @@
 
 #### 其他
 
-如果你在 使用该模板当中 遇到问题 欢迎向我提起ISSUE讨论喵
+如果你在 使用该模板当中 遇到问题 欢迎向我提起ISSUE讨论
 
-如果有其他的好IDEA或者Improvement的话 也给我说喵
+如果有其他的好IDEA或者Improvement的话 也给我说
 
 如果有大厂内推机会  求求你推推我  孩子找不到工作 很可怜的 
 
