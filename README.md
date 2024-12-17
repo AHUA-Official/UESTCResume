@@ -1,6 +1,9 @@
 # UESTCResume
 电子科技大学大三找实习简历latex模板byzl推荐在overleaf上使用谢谢
 
+https://www.yuque.com/ahuaofficial/iuly4s
+这是在语雀文档上的说明书和一些我总结的简历编写注意事项
+
 
 
 这个是我在找工作的时候用latex制作的仿照超级简历的一个简历模板  
